@@ -48,6 +48,15 @@ async function run() {
       }
     });
 
+ // delete operation
+     app.delete('/users/:id', async(req, res) =>{
+      const id = req.params.id;
+      const query = {_id: new ObjectId(id)}
+      const result = await usersCollection.deleteOne(query);
+      res.send(result);
+    })
+
+
     // Confirm MongoDB connection
     console.log("Connected to MongoDB successfully!");
   } catch (error) {
